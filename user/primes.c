@@ -27,6 +27,7 @@ void sieveProc(int left[2]) {
         close(left[READ]);
         exit(1);
     } else if( pid > 0 ) {
+        // parent process
         close(right[READ]);
         while(read(left[READ], &temp, sizeof(int))) {
             if( temp % prime == 0 ) continue;
@@ -36,6 +37,7 @@ void sieveProc(int left[2]) {
         wait(0);
         exit(0);
     } else {
+        // child process
         sieveProc(right);
         exit(0);
     }
@@ -49,6 +51,7 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "fork error...\n");
         exit(1);
     } else if (pid > 0) {
+        // parent process - write 
         close(p[READ]);
         for(int i = 2; i <= 35; ++i) {
             write(p[WRITE], &i, sizeof(int));

@@ -71,6 +71,7 @@
     "__config": "c",
     "__functional_03": "c",
     "functional": "c",
-    "random": "c"
+    "random": "c",
+    "fs.h": "c"
   }
 }
